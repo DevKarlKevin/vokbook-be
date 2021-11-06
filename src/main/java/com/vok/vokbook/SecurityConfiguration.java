@@ -1,6 +1,5 @@
 package com.vok.vokbook;
 
-import com.sun.istack.NotNull;
 import com.vok.vokbook.authentication.service.UserDetailsServiceImpl;
 import com.vok.vokbook.authentication.security.JwtAuthenticationEntryPoint;
 import com.vok.vokbook.authentication.security.JwtAuthenticationFilter;
@@ -25,6 +24,8 @@ import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * Spring security configuration for application.
