@@ -1,0 +1,33 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2021-11-06_create_user_table" author="Karl Kevin Klais">
+        <sql>
+            create table user_account
+            (
+                id bigserial not null,
+                first_name varchar(50),
+                last_name varchar(50),
+                username varchar(255) not null,
+                password varchar(255) not null,
+                language varchar(50),
+                created_at timestamp default now() not null,
+                updated_at timestamp default now() not null,
+                deleted_at timestamp
+            );
+
+            create unique index user_account_id_uindex
+            on user_account (id);
+
+            create unique index user_account_username_uindex
+            on user_account (username);
+
+            alter table user_account
+            add constraint user_account_pk
+            primary key (id);
+        </sql>
+    </changeSet>
+</databaseChangeLog>
