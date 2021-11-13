@@ -28,6 +28,9 @@
             alter table user_account
             add constraint user_account_pk
             primary key (id);
+
+            insert into user_account (first_name, last_name, username, password, language)
+            values ('Test', 'Kasutaja', '1', '$2a$10$SOM0Sw9BRIeKF6KecPl0F.bGoPrSiNC4HoE9ObhU4gu4RZqSFWvJy', 'ENG')
         </sql>
     </changeSet>
 </databaseChangeLog>
