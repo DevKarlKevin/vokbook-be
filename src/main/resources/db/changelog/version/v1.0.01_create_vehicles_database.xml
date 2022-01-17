@@ -6,25 +6,25 @@
 
     <changeSet id="2022-01-09_create_vehicles_table" author="Siim Salla">
         <sql>
-            create table vehicles
+            create table vehicle
             (
                 id bigserial not null,
-                comoduleID varchar(50),
+                comodule_id varchar(50),
                 identifier varchar(50),
                 fleet varchar(255) not null,
                 model varchar(255) not null,
                 mileage bigserial,
                 status varchar(255) not null,
                 repo varchar(255) not null,
-                ecuBranch varchar(255) not null,
-                ecuCommit varchar(255) not null,
-                csCommit varchar(255) not null,
+                ecu_branch varchar(255) not null,
+                ecu_commit varchar(255) not null,
+                cs_commit varchar(255) not null,
                 created_at timestamp default now() not null,
                 updated_at timestamp default now() not null,
                 deleted_at timestamp
             );
 
-            insert into vehicles (comoduleID, identifier, fleet, model, mileage, status, repo, ecuBranch, ecuCommit, csCommit)
+            insert into vehicle (comodule_id, identifier, fleet, model, mileage, status, repo, ecu_branch, ecu_commit, cs_commit)
             values ('TestSõiduk', 'ID122', 'Tallinn', 'VOK1', 0, 'Active', '123cefg', '123cefg', '123cefg', '123cefg')
         </sql>
     </changeSet>
