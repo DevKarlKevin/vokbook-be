@@ -1,34 +1,35 @@
 package com.vok.vokbook.vehicle.domain;
 
-import com.vok.vokbook.vehicle.enumerator.StatusEnum;
+import com.vok.vokbook.common.AuditableEntity;
+import com.vok.vokbook.vehicle.enumerator.Fleet;
+import com.vok.vokbook.vehicle.enumerator.Status;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Vehicle {
+@Accessors(chain = true)
+public class Vehicle extends AuditableEntity {
 
-    private Long id;
-
-    private String comoduleId;
+    private String vokId;
 
     private String identifier;
-// TODO fleet and model entities
 
-//    private Fleet fleet;
-//
-//    private Model model;
+    @Enumerated(EnumType.STRING)
+    private Fleet fleet;
 
     private BigDecimal mileage;
 
     @Enumerated(EnumType.STRING)
-    private StatusEnum status;
+    private Status status;
+
+    private String coModuleId;
 
     private String repo;
 
@@ -38,4 +39,11 @@ public class Vehicle {
 
     private String csCommit;
 
+    private String rfid;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private VehicleModel vehicleModel;
+
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<VehiclePart> vehicleParts;
 }

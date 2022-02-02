@@ -1,0 +1,66 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2022-01-09_create_vehicles_table" author="Siim Salla">
+        <sql>
+            create table vehicle
+            (
+                id bigserial not null,
+                vok_id varchar(50),
+                identifier varchar(50),
+                fleet varchar(255) not null,
+                mileage bigint,
+                status varchar(255) not null,
+                co_module_id varchar(50),
+                repo varchar(255) not null,
+                ecu_branch varchar(255) not null,
+                ecu_commit varchar(255) not null,
+                cs_commit varchar(255) not null,
+                rfid varchar(255) not null,
+                vehicle_model_id bigint,
+                created_at timestamp default now() not null,
+                updated_at timestamp default now() not null
+            );
+
+            create unique index vehicle_id_uindex
+                on vehicle (id);
+
+            alter table vehicle
+                add constraint vehicle_pk
+                    primary key (id);
+        </sql>
+    </changeSet>
+
+    <changeSet id="2022-01-09_create_vehicles_part_table" author="Siim Salla">
+        <sql>
+            create table vehicle_part
+            (
+                id bigserial not null,
+                part_id varchar(255),
+                rev varchar(100),
+                description text,
+                part_location varchar(100),
+                vehicle_id bigint,
+                created_at timestamp default now() not null,
+                updated_at timestamp default now() not null
+            );
+
+            create unique index vehicle_part_id_uindex
+                on vehicle_part (id);
+
+            alter table vehicle_part
+                add constraint vehicle_part_pk
+                    primary key (id);
+
+            create unique index vehicle_part_vehicle_id_uindex
+                on vehicle_part (vehicle_id);
+
+            alter table vehicle_part
+                add constraint vehicle_part_vehicle_id_fk
+                    foreign key (vehicle_id) references vehicle;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

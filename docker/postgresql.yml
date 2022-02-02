@@ -1,0 +1,17 @@
+version: '3'
+services:
+  vok-postgresql:
+    image: postgres:12.4
+    environment:
+      - POSTGRES_USER=vok
+      - POSTGRES_PASSWORD=vok
+      - POSTGRES_DB=root
+    ports:
+      - 5432:5432
+    volumes:
+      - vok-postgresql-data:/var/lib/postgresql/data/
+      - ./docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
+volumes:
+  # docker volume create vok-postgresql-data
+  vok-postgresql-data:
+    external: true

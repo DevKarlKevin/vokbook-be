@@ -1,13 +1,11 @@
 package com.vok.vokbook.vehicle.controller.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class VehicleResponse {
-    private Long vehicleId;
-    private String comoduleId;
+    private Long id;
+    private String coModuleId;
     private String identifier;
     private String fleet;
     private String model;
@@ -17,5 +15,5 @@ public class VehicleResponse {
     private String ecuBranch;
     private String ecuCommit;
     private String csCommit;
-
+    private String rfid;
 }

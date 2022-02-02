@@ -1,30 +1,36 @@
 package com.vok.vokbook.vehicle.controller.dto;
 
+import com.vok.vokbook.vehicle.enumerator.Fleet;
+import com.vok.vokbook.vehicle.enumerator.Status;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public class VehicleRequest {
+public class VehicleCreateRequest {
+
+    @NotNull
+    @NotEmpty
+    private String vokId;
+
     @NotBlank
-    private String comoduleId;
+    private String coModuleId;
 
     @NotBlank
     private String identifier;
 
     @NotBlank
-    private String fleet;
+    private Fleet fleet;
 
     @NotBlank
     private String model;
 
     @NotBlank
-    private Integer mileage;
-
-    @NotBlank
-    private String status;
+    private Status status;
 
     @NotBlank
     private String repo;
@@ -37,5 +43,9 @@ public class VehicleRequest {
 
     @NotBlank
     private String csCommit;
+
+    @NotNull
+    @NotEmpty
+    private String rfid;
 
 }

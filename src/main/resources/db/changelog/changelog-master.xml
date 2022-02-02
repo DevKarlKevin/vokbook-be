@@ -5,5 +5,5 @@
    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
     <include file="/db/changelog/version/v1.0_changelog.xml"/>
-    <include file="db/changelog/version/v1.0.01_create_vehicles_database.xml"/>
+    <include file="db/changelog/version/202201301608_create_vehicles_database.xml"/>
 </databaseChangeLog>
