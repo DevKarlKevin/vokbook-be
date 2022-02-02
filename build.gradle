@@ -41,12 +41,23 @@ dependencies {
 
 	// MapStruct
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
+	compileOnly 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 
+	// Test
+	testRuntimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 test {
 	useJUnitPlatform()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDir "$buildDir/generated/soruces/annotationProcessor/java"
+		}
+	}
 }
