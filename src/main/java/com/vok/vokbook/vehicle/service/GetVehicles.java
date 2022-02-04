@@ -13,7 +13,11 @@ public class GetVehicles {
 
     private final VehicleRepository vehicleRepository;
 
-    public List<Vehicle> execute() {
+    public List<Vehicle> getAll() {
         return vehicleRepository.findAll();
+    }
+
+    public Vehicle get(Long vehicleId) {
+        return vehicleRepository.getById(vehicleId);
     }
 }

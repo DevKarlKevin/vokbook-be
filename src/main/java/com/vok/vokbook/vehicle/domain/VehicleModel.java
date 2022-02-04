@@ -11,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-
-// todo: move it to model package
 @Entity
 @Getter
 @Setter
@@ -22,6 +20,6 @@ public class VehicleModel extends AuditableEntity {
     private String name;
     private String description;
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicleModel", orphanRemoval = true, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<VehicleModelPart> vehicleModelParts;
 }

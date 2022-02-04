@@ -1,6 +1,6 @@
 package com.vok.vokbook.vehicle.service;
 
-import com.vok.vokbook.vehicle.controller.dto.VehicleCreateRequest;
+import com.vok.vokbook.vehicle.controller.dto.VehicleDTO;
 import com.vok.vokbook.vehicle.domain.Vehicle;
 import com.vok.vokbook.vehicle.enumerator.Status;
 import com.vok.vokbook.vehicle.repository.VehicleRepository;
@@ -13,12 +13,12 @@ public class CreateVehicle {
 
     private final VehicleRepository vehicleRepository;
 
-    public Vehicle execute(VehicleCreateRequest request) {
+    public Vehicle execute(VehicleDTO.CreateRequest request) {
         final Vehicle vehicle = createNewVehicle(request);
         return vehicleRepository.save(vehicle);
     }
 
-    private Vehicle createNewVehicle(VehicleCreateRequest request) {
+    private Vehicle createNewVehicle(VehicleDTO.CreateRequest request) {
         return new Vehicle()
                 .setCoModuleId(request.getCoModuleId())
                 .setCsCommit(request.getCsCommit())

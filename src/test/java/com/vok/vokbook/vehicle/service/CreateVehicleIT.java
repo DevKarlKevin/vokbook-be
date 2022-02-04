@@ -1,6 +1,6 @@
 package com.vok.vokbook.vehicle.service;
 
-import com.vok.vokbook.vehicle.controller.dto.VehicleCreateRequest;
+import com.vok.vokbook.vehicle.controller.dto.VehicleDTO;
 import com.vok.vokbook.vehicle.domain.Vehicle;
 import com.vok.vokbook.vehicle.enumerator.Fleet;
 import com.vok.vokbook.vehicle.enumerator.Status;
@@ -18,17 +18,19 @@ public class CreateVehicleIT {
 
     @Test
     public void test_createVehicle_success() {
-        final VehicleCreateRequest request = new VehicleCreateRequest();
-        request.setCoModuleId("coModuleId");
-        request.setCsCommit("csCommit");
-        request.setEcuBranch("ecuBranch");
-        request.setFleet(Fleet.VOK_BIKES_TALLINN);
-        request.setIdentifier("Identifier");
-        request.setRepo("repo");
-        request.setEcuCommit("ecuCommit");
-        request.setRfid("rfid");
-        request.setStatus(Status.ACTIVE);
-        request.setVokId("vokId");
+        final VehicleDTO.CreateRequest request = new VehicleDTO.CreateRequest(
+                "vokId",
+                "coModuleId",
+                "Identifier",
+                Fleet.VOK_BIKES_TALLINN,
+                "model",
+                Status.ACTIVE,
+                "repo",
+                "ecuBranch",
+                "ecuCommit",
+                "csCommit",
+                "rfid"
+        );
 
         final Vehicle vehicle = createVehicle.execute(request);
 

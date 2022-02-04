@@ -6,4 +6,5 @@
 
     <include file="/db/changelog/version/v1.0_changelog.xml"/>
     <include file="db/changelog/version/202201301608_create_vehicles_database.xml"/>
+    <include file="db/changelog/version/202202031622_create_vehicle_model_table.xml"/>
 </databaseChangeLog>

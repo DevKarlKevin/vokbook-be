@@ -1,0 +1,56 @@
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="2022-02-03_create_vehicles_model_table" author="Fred Paist">
+        <sql>
+            create table vehicle_model
+            (
+                id bigserial not null,
+                name varchar(255) not null,
+                description text,
+                created_at timestamp default now() not null,
+                updated_at timestamp default now() not null
+            );
+
+            create unique index vehicle_model_uindex
+                on vehicle_model (id);
+
+            alter table vehicle_model
+                add constraint vehicle_model_pk
+                    primary key (id);
+        </sql>
+    </changeSet>
+
+    <changeSet id="2022-02-03_create_vehicles_model_part_table" author="Fred Paist">
+        <sql>
+            create table vehicle_model_part
+            (
+                id bigserial not null,
+                part_id varchar(255),
+                rev varchar(100),
+                description text,
+                vehicle_model_id bigint,
+                part_location varchar(100) not null,
+                created_at timestamp default now() not null,
+                updated_at timestamp default now() not null
+            );
+
+            create unique index vehicle_model_part_id_uindex
+                on vehicle_model_part (id);
+
+            alter table vehicle_model_part
+                add constraint vehicle_model_part_pk
+                    primary key (id);
+
+            create unique index vehicle_part_vehicle_model_id_uindex
+                on vehicle_model_part (vehicle_model_id);
+
+            alter table vehicle_model_part
+                add constraint vehicle_model_part_vehicle_model_id_fk
+                    foreign key (vehicle_model_id) references vehicle_model;
+        </sql>
+    </changeSet>
+</databaseChangeLog>

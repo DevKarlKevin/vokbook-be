@@ -3,13 +3,12 @@ package com.vok.vokbook.vehicle.domain;
 import com.vok.vokbook.common.AuditableEntity;
 import com.vok.vokbook.vehicle.enumerator.PartLocation;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
-// todo: move it to model package
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Accessors(chain = true)
@@ -24,7 +23,7 @@ public class VehicleModelPart extends AuditableEntity {
     @Enumerated(EnumType.STRING)
     private PartLocation partLocation;
 
-    private Long modelId;
-
-    private Long vehicleModelId;
+    @ManyToOne
+    @JoinColumn(name = "vehicle_model_id")
+    private VehicleModel vehicleModel;
 }

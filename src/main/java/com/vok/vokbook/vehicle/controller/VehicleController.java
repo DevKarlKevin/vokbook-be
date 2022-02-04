@@ -1,7 +1,6 @@
 package com.vok.vokbook.vehicle.controller;
 
-import com.vok.vokbook.vehicle.controller.dto.VehicleCreateRequest;
-import com.vok.vokbook.vehicle.controller.dto.VehicleResponse;
+import com.vok.vokbook.vehicle.controller.dto.VehicleDTO;
 import com.vok.vokbook.vehicle.controller.mapper.VehicleMapper;
 import com.vok.vokbook.vehicle.domain.Vehicle;
 import com.vok.vokbook.vehicle.service.CreateVehicle;
@@ -22,14 +21,20 @@ public class VehicleController {
     private final VehicleMapper vehicleMapper;
 
     @PostMapping
-    public ResponseEntity<VehicleResponse> createVehicle(@RequestBody VehicleCreateRequest request) {
+    public ResponseEntity<VehicleDTO.Response> create(@RequestBody VehicleDTO.CreateRequest request) {
         final Vehicle vehicle = createVehicle.execute(request);
         return ResponseEntity.ok(vehicleMapper.toDTO(vehicle));
     }
 
     @GetMapping
-    public ResponseEntity<List<VehicleResponse>> getAllVehicles() {
-        final List<Vehicle> vehicle = getVehicles.execute();
+    public ResponseEntity<List<VehicleDTO.Response>> getAll() {
+        final List<Vehicle> vehicle = getVehicles.getAll();
+        return ResponseEntity.ok(vehicleMapper.toDTO(vehicle));
+    }
+
+    @GetMapping("{vehicleId}")
+    public ResponseEntity<VehicleDTO.Response> get(@PathVariable Long vehicleId) {
+        final Vehicle vehicle = getVehicles.get(vehicleId);
         return ResponseEntity.ok(vehicleMapper.toDTO(vehicle));
     }
 }
