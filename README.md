@@ -12,4 +12,4 @@ VOKBOOK API.
 
 `docker volume create vok-postgresql-data`
 
-`docker volume create vok-postgresql-data`
+`docker compose -f docker/postgresql.yml up -d`
