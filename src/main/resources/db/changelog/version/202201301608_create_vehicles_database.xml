@@ -42,6 +42,7 @@
                 part_id varchar(255),
                 rev varchar(100),
                 description text,
+                condition varchar(255),
                 part_location varchar(100),
                 vehicle_id bigint,
                 created_at timestamp default now() not null,

@@ -6,9 +6,7 @@ import com.vok.vokbook.vehicle.enumerator.VehiclePartCondition;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -27,5 +25,7 @@ public class VehiclePart extends AuditableEntity {
     @Enumerated(EnumType.STRING)
     private PartLocation partLocation;
 
-    private Long vehicleId;
+    @ManyToOne
+    @JoinColumn(name = "vehicle_id")
+    private Vehicle vehicle;
 }

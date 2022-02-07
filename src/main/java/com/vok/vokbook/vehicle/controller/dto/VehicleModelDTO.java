@@ -21,6 +21,7 @@ public class VehicleModelDTO {
 
     @Value
     public static class Response {
+        Long id;
         String name;
         String description;
         List<ModelPartDTO> vehicleModelParts;
