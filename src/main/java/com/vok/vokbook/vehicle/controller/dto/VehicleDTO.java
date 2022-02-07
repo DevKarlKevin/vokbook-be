@@ -56,6 +56,7 @@ public class VehicleDTO {
     public static class Response {
         Long id;
         String coModuleId;
+        String vokId;
         String identifier;
         String fleet;
         String model;
