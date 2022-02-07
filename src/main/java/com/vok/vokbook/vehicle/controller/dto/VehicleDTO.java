@@ -30,7 +30,7 @@ public class VehicleDTO {
         Fleet fleet;
 
         @NotBlank
-        String model;
+        Long model;
 
         @NotBlank
         Status status;

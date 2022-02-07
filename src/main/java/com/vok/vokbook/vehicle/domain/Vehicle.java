@@ -44,6 +44,6 @@ public class Vehicle extends AuditableEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private VehicleModel vehicleModel;
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle", orphanRemoval = true, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<VehiclePart> vehicleParts;
 }
