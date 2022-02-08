@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class CreateVehicleIT {
@@ -53,5 +53,7 @@ public class CreateVehicleIT {
         assertThat(vehicle.getRfid()).isEqualTo("rfid");
         assertThat(vehicle.getStatus()).isEqualTo(Status.ACTIVE);
         assertThat(vehicle.getVokId()).isEqualTo("vokId");
+
+        assertThat(vehicle.getVehicleParts()).hasSize(1);
     }
 }
