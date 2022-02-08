@@ -5,6 +5,7 @@ import com.vok.vokbook.vehicle.controller.dto.VehicleDTO;
 import com.vok.vokbook.vehicle.domain.Vehicle;
 import com.vok.vokbook.vehicle.domain.VehicleModel;
 import com.vok.vokbook.vehicle.enumerator.Fleet;
+import com.vok.vokbook.vehicle.enumerator.PartLocation;
 import com.vok.vokbook.vehicle.enumerator.Status;
 import com.vok.vokbook.vehicle.repository.VehicleModelRepository;
 import org.junit.jupiter.api.Test;
@@ -54,6 +55,10 @@ public class CreateVehicleIT {
         assertThat(vehicle.getStatus()).isEqualTo(Status.ACTIVE);
         assertThat(vehicle.getVokId()).isEqualTo("vokId");
 
-        assertThat(vehicle.getVehicleParts()).hasSize(1);
+        assertThat(vehicle.getVehicleParts())
+                .singleElement()
+                .satisfies(e ->
+                        assertThat(e.getPartLocation()).isEqualTo(PartLocation.FRAME)
+                );
     }
 }
