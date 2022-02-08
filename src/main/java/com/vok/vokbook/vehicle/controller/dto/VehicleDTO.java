@@ -1,5 +1,6 @@
 package com.vok.vokbook.vehicle.controller.dto;
 
+import com.vok.vokbook.vehicle.domain.VehiclePart;
 import com.vok.vokbook.vehicle.enumerator.Fleet;
 import com.vok.vokbook.vehicle.enumerator.Status;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.Value;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -59,7 +61,7 @@ public class VehicleDTO {
         String vokId;
         String identifier;
         String fleet;
-        String model;
+        Long model;
         Integer mileage;
         String status;
         String repo;
@@ -67,6 +69,8 @@ public class VehicleDTO {
         String ecuCommit;
         String csCommit;
         String rfid;
+
+        List<VehiclePartDTO> vehicleParts;
     }
 
 }

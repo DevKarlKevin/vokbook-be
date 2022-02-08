@@ -23,7 +23,6 @@ public class VehicleModelPart extends AuditableEntity {
     @Enumerated(EnumType.STRING)
     private PartLocation partLocation;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_model_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private VehicleModel vehicleModel;
 }

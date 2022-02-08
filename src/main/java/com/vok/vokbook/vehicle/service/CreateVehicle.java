@@ -12,6 +12,7 @@ import com.vok.vokbook.vehicle.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,7 @@ public class CreateVehicle {
     private final VehicleRepository vehicleRepository;
     private final VehicleModelRepository vehicleModelRepository;
 
+    @Transactional
     public Vehicle execute(VehicleDTO.CreateRequest request) {
         final Vehicle vehicle = createNewVehicle(request);
         return vehicleRepository.save(vehicle);
@@ -50,7 +52,7 @@ public class CreateVehicle {
     }
 
     private List<VehiclePart> createNewParts(VehicleModel vehicleModel) {
-        return vehicleModel.getVehicleModelParts().stream().map(vehicleModelPart -> createNewPart(vehicleModelPart)).collect(Collectors.toList());
+        return vehicleModel.getVehicleModelParts().stream().map(this::createNewPart).collect(Collectors.toList());
     }
 
     private VehiclePart createNewPart(VehicleModelPart vehicleModelPart) {

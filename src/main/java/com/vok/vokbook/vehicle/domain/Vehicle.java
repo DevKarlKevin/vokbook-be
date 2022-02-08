@@ -9,6 +9,7 @@ import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -44,6 +45,7 @@ public class Vehicle extends AuditableEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private VehicleModel vehicleModel;
 
-    @OneToMany(mappedBy = "vehicle", orphanRemoval = true, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private List<VehiclePart> vehicleParts;
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name ="vehicle_id")
+    private List<VehiclePart> vehicleParts = new ArrayList<>();
 }
