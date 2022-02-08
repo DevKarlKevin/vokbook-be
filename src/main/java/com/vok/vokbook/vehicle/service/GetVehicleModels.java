@@ -16,4 +16,8 @@ public class GetVehicleModels {
     public List<VehicleModel> getAll() {
         return vehicleModelRepository.findAll();
     }
+
+    public VehicleModel get(Long vehicleModelId) {
+        return vehicleModelRepository.getById(vehicleModelId);
+    }
 }

@@ -31,4 +31,10 @@ public class ModelController {
         final List<VehicleModel> vehicleModels = getVehicleModels.getAll();
         return ResponseEntity.ok(vehicleModelMapper.toDTO(vehicleModels));
     }
+
+    @GetMapping("{modelId}")
+    public ResponseEntity<VehicleModelDTO.Response> get(@PathVariable Long vehicleModelId) {
+        final VehicleModel vehicleModel = getVehicleModels.get(vehicleModelId);
+        return ResponseEntity.ok(vehicleModelMapper.toDTO(vehicleModel));
+    }
 }
