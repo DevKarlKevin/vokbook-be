@@ -32,7 +32,7 @@ public class ModelController {
         return ResponseEntity.ok(vehicleModelMapper.toDTO(vehicleModels));
     }
 
-    @GetMapping("{modelId}")
+    @GetMapping("{vehicleModelId}")
     public ResponseEntity<VehicleModelDTO.Response> get(@PathVariable Long vehicleModelId) {
         final VehicleModel vehicleModel = getVehicleModels.get(vehicleModelId);
         return ResponseEntity.ok(vehicleModelMapper.toDTO(vehicleModel));
