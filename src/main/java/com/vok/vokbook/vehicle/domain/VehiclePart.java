@@ -4,10 +4,12 @@ import com.vok.vokbook.common.AuditableEntity;
 import com.vok.vokbook.vehicle.enumerator.PartLocation;
 import com.vok.vokbook.vehicle.enumerator.VehiclePartCondition;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @Accessors(chain = true)
@@ -25,7 +27,6 @@ public class VehiclePart extends AuditableEntity {
     @Enumerated(EnumType.STRING)
     private PartLocation partLocation;
 
-    @ManyToOne
-    @JoinColumn(name = "vehicle_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Vehicle vehicle;
 }

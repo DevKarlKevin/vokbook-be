@@ -9,6 +9,7 @@ import lombok.Value;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Setter
@@ -59,7 +60,7 @@ public class VehicleDTO {
         String vokId;
         String identifier;
         String fleet;
-        String model;
+        VehicleModelDTO.SimpleResponse vehicleModel;
         Integer mileage;
         String status;
         String repo;
@@ -67,6 +68,8 @@ public class VehicleDTO {
         String ecuCommit;
         String csCommit;
         String rfid;
+
+        List<VehiclePartDTO> vehicleParts;
     }
 
 }

@@ -8,6 +8,7 @@ import com.vok.vokbook.vehicle.repository.VehicleModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -17,6 +18,7 @@ public class CreateVehicleModel {
 
     private final VehicleModelRepository vehicleModelRepository;
 
+    @Transactional
     public VehicleModel execute(VehicleModelDTO.CreateRequest request) {
         final com.vok.vokbook.vehicle.domain.VehicleModel model = createNewModel(request);
         return vehicleModelRepository.save(model);
@@ -27,18 +29,17 @@ public class CreateVehicleModel {
                 .setName(request.getName())
                 .setDescription(request.getDescription());
 
-        List<VehicleModelPart> vehicleModelParts = createNewModelParts(request.getVehicleModelParts(), vehicleModel);
+        List<VehicleModelPart> vehicleModelParts = createNewModelParts(request.getVehicleModelParts());
         vehicleModel.setVehicleModelParts(vehicleModelParts);
         return vehicleModel;
     }
 
-    private List<VehicleModelPart> createNewModelParts(List<ModelPartDTO> modelPartDTOS, VehicleModel vehicleModel) {
-        return modelPartDTOS.stream().map(dto -> createNewModelPart(dto, vehicleModel)).collect(Collectors.toList());
+    private List<VehicleModelPart> createNewModelParts(List<ModelPartDTO> modelPartDTOS) {
+        return modelPartDTOS.stream().map(this::createNewModelPart).collect(Collectors.toList());
     }
 
-    private VehicleModelPart createNewModelPart(ModelPartDTO modelPartDTO, VehicleModel vehicleModel) {
+    private VehicleModelPart createNewModelPart(ModelPartDTO modelPartDTO) {
         return new VehicleModelPart()
-                .setVehicleModel(vehicleModel)
                 .setPartId(modelPartDTO.getPartId())
                 .setRev(modelPartDTO.getRev())
                 .setDescription(modelPartDTO.getDescription())

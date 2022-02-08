@@ -25,9 +25,6 @@
                 updated_at timestamp default now() not null
             );
 
-            create unique index vehicle_id_uindex
-                on vehicle (id);
-
             alter table vehicle
                 add constraint vehicle_pk
                     primary key (id);
@@ -55,9 +52,6 @@
             alter table vehicle_part
                 add constraint vehicle_part_pk
                     primary key (id);
-
-            create unique index vehicle_part_vehicle_id_uindex
-                on vehicle_part (vehicle_id);
 
             alter table vehicle_part
                 add constraint vehicle_part_vehicle_id_fk
