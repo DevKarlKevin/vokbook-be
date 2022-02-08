@@ -1,6 +1,5 @@
 package com.vok.vokbook.vehicle.controller.dto;
 
-import com.vok.vokbook.vehicle.domain.VehiclePart;
 import com.vok.vokbook.vehicle.enumerator.Fleet;
 import com.vok.vokbook.vehicle.enumerator.Status;
 import lombok.Getter;
@@ -61,7 +60,7 @@ public class VehicleDTO {
         String vokId;
         String identifier;
         String fleet;
-        Long model;
+        VehicleModelDTO.SimpleResponse vehicleModel;
         Integer mileage;
         String status;
         String repo;

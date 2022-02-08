@@ -27,4 +27,11 @@ public class VehicleModelDTO {
         List<ModelPartDTO> vehicleModelParts;
     }
 
+    @Value
+    public static class SimpleResponse {
+        Long id;
+        String name;
+        String description;
+    }
+
 }
