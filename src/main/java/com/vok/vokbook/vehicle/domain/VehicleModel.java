@@ -18,7 +18,7 @@ public class VehicleModel extends AuditableEntity {
     private String name;
     private String description;
 
-    @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(orphanRemoval = true, cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     @JoinColumn(name ="vehicle_model_id")
     private List<VehicleModelPart> vehicleModelParts = new ArrayList<>();
 }
