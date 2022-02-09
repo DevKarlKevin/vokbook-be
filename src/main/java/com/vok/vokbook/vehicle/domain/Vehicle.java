@@ -48,4 +48,9 @@ public class Vehicle extends AuditableEntity {
     @OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name ="vehicle_id")
     private List<VehiclePart> vehicleParts = new ArrayList<>();
+
+    public void setVehicleParts(List<VehiclePart> vehicleParts) {
+        this.vehicleParts.clear();
+        this.vehicleParts.addAll(vehicleParts);
+    }
 }
