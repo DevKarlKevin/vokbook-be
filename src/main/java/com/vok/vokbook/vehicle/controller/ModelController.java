@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class ModelController {
     private final UpdateVehicleModel updateVehicleModel;
 
     @PostMapping
-    public ResponseEntity<VehicleModelDTO.Response> create(@RequestBody VehicleModelDTO.CreateRequest request) {
+    public ResponseEntity<VehicleModelDTO.Response> create(@Valid @RequestBody VehicleModelDTO.CreateRequest request) {
         final VehicleModel model = createVehicleModel.execute(request);
         return ResponseEntity.ok(vehicleModelMapper.toDTO(model));
     }
@@ -41,7 +42,7 @@ public class ModelController {
     }
 
     @PutMapping("{vehicleModelId}")
-    public ResponseEntity<VehicleModelDTO.Response> update(@PathVariable Long vehicleModelId, @RequestBody VehicleModelDTO.CreateRequest request) {
+    public ResponseEntity<VehicleModelDTO.Response> update(@PathVariable Long vehicleModelId, @Valid @RequestBody VehicleModelDTO.UpdateRequest request) {
         VehicleModel updatedVehicleModel = updateVehicleModel.execute(vehicleModelId, request);
         return ResponseEntity.ok(vehicleModelMapper.toDTO(updatedVehicleModel));
     }

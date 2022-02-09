@@ -10,11 +10,18 @@ public class VehicleModelDTO {
 
     @Value
     public static class CreateRequest {
-
         @NotBlank
         String name;
         String description;
+        @Valid
+        List<ModelPartDTO> vehicleModelParts;
+    }
 
+    @Value
+    public static class UpdateRequest {
+        @NotBlank
+        String name;
+        String description;
         @Valid
         List<ModelPartDTO> vehicleModelParts;
     }

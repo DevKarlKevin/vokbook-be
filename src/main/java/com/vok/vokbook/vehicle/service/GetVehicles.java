@@ -18,6 +18,6 @@ public class GetVehicles {
     }
 
     public Vehicle get(Long vehicleId) {
-        return vehicleRepository.getById(vehicleId);
+        return vehicleRepository.findById(vehicleId).orElse(null);
     }
 }

@@ -20,17 +20,16 @@ public class UpdateVehicleModel {
     private final GetVehicleModels getVehicleModels;
 
     @Transactional
-    public VehicleModel execute(Long vehicleModelId, VehicleModelDTO.CreateRequest request) {
-        VehicleModel vehicleModel = getVehicleModels.get(vehicleModelId);
-        final VehicleModel model = updateVehicleModel(vehicleModel, request);
+    public VehicleModel execute(Long vehicleModelId, VehicleModelDTO.UpdateRequest request) {
+        VehicleModel vehicleModel = getVehicleModels.get(vehicleModelId); // todo: add check if model was not found
+        VehicleModel model = updateVehicleModel(vehicleModel, request);
         return vehicleModelRepository.save(model);
     }
 
-    private VehicleModel updateVehicleModel(VehicleModel vehicleModel, VehicleModelDTO.CreateRequest request) {
+    private VehicleModel updateVehicleModel(VehicleModel vehicleModel, VehicleModelDTO.UpdateRequest request) {
         vehicleModel.setName(request.getName());
         vehicleModel.setDescription(request.getDescription());
         vehicleModel.setVehicleModelParts(createNewModelParts(request.getVehicleModelParts()));
-
         return vehicleModel;
     }
 
