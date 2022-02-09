@@ -42,8 +42,7 @@ public class ModelController {
 
     @PutMapping("{vehicleModelId}")
     public ResponseEntity<VehicleModelDTO.Response> update(@PathVariable Long vehicleModelId, @RequestBody VehicleModelDTO.CreateRequest request) {
-        VehicleModel vehicleModel = getVehicleModels.get(vehicleModelId);
-        VehicleModel updatedVehicleModel = updateVehicleModel.execute(vehicleModel, request);
+        VehicleModel updatedVehicleModel = updateVehicleModel.execute(vehicleModelId, request);
         return ResponseEntity.ok(vehicleModelMapper.toDTO(updatedVehicleModel));
     }
 }

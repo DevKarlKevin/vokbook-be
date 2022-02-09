@@ -17,9 +17,11 @@ import java.util.stream.Collectors;
 public class UpdateVehicleModel {
 
     private final VehicleModelRepository vehicleModelRepository;
+    private final GetVehicleModels getVehicleModels;
 
     @Transactional
-    public VehicleModel execute(VehicleModel vehicleModel, VehicleModelDTO.CreateRequest request) {
+    public VehicleModel execute(Long vehicleModelId, VehicleModelDTO.CreateRequest request) {
+        VehicleModel vehicleModel = getVehicleModels.get(vehicleModelId);
         final VehicleModel model = updateVehicleModel(vehicleModel, request);
         return vehicleModelRepository.save(model);
     }
