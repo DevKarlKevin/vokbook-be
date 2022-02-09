@@ -8,7 +8,6 @@ import com.vok.vokbook.vehicle.repository.VehicleModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,10 +22,6 @@ public class UpdateVehicleModel {
     @Transactional
     public VehicleModel execute(Long vehicleModelId, VehicleModelDTO.UpdateRequest request) {
         VehicleModel vehicleModel = getVehicleModels.get(vehicleModelId);
-        if (vehicleModel == null) {
-            throw new EntityNotFoundException("Vehicle model not found with ID:" + vehicleModelId);
-        }
-
         VehicleModel model = updateVehicleModel(vehicleModel, request);
         return vehicleModelRepository.save(model);
     }

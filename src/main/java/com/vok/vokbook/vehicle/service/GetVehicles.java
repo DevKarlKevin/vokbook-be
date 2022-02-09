@@ -5,6 +5,7 @@ import com.vok.vokbook.vehicle.repository.VehicleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @Component
@@ -18,6 +19,7 @@ public class GetVehicles {
     }
 
     public Vehicle get(Long vehicleId) {
-        return vehicleRepository.findById(vehicleId).orElse(null);
+        return vehicleRepository.findById(vehicleId)
+                .orElseThrow(() -> new EntityNotFoundException("Vehicle not found with ID:" + vehicleId));
     }
 }
